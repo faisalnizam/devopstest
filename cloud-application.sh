@@ -5,6 +5,7 @@
 
 source skeleton/bash/functionsnheaders/howtouse.sh
 source skeleton/bash/functionsnheaders/checkprereq.sh
+source skeleton/bash/functionsnheaders/terraform.sh
 # Function Files Include Ends Here 
 # ============================ # 
 
@@ -39,8 +40,11 @@ then
 	echo "Terra Form Installed" 
   else 
 	 echo "Install Terra Form" 
+	 exit 1 
   fi # If Check Ends For Command Terraform 
 
 
+  # Go To Terraform Function Initiation of AWS Infrastructure
+  initiate_infra_using_terraform $1 $2 $3 
 
 fi 
