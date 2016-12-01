@@ -4,7 +4,7 @@
 # =========================== # 
 
 source skeleton/bash/functionsnheaders/howtouse.sh
-
+source skeleton/bash/functionsnheaders/checkprereq.sh
 # Function Files Include Ends Here 
 # ============================ # 
 
@@ -31,7 +31,16 @@ then
   
 	for arguments in "$@"
 	 do
- 	   echo "$arguments"
+ 	   echo "Arguments Passed Are $arguments"
 	done
-fi
 
+  if check_pre_req terraform; then 
+	echo "" 
+	echo "Terra Form Installed" 
+  else 
+	 echo "Install Terra Form" 
+  fi # If Check Ends For Command Terraform 
+
+
+
+fi 
