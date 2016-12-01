@@ -3,7 +3,7 @@
 # Include Functions Files Here 
 # =========================== # 
 
-source skeleton/bash/functionsnheaders/howtouse
+source skeleton/bash/functionsnheaders/howtouse.sh
 
 # Function Files Include Ends Here 
 # ============================ # 
@@ -13,9 +13,25 @@ echo "DevOps Application Requested by Noon.com"
 echo "========================================" 
 echo "" 
 
-if [ "$#" -ne 1 ]
+if [ "$1" = "--help" ] 
 then
-  echo "Usage: ..."
-  exit 1
+  echo "" 
+  echo "Function Under Construction For Later Releases" 
+  echo "" 
+
+elif [ "$#" -ne 4 ] 
+then
+  howtouse 
+  exit 1 
+
+elif [ "$#" -eq 4 ] 
+then 
+  echo "" 
+  echo "All 4 Parameters Recieved where" 
+  
+	for arguments in "$@"
+	 do
+ 	   echo "$arguments"
+	done
 fi
 
