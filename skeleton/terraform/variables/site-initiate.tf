@@ -4,6 +4,30 @@ resource "aws_key_pair" "auth" {
   public_key = "${file(var.public_key_path)}"
 } 
 
+# Defining ELB Resource With Respect To Count Instances 
+  resource "aws_elb" "devopsae" {
+  name = "elb" 
+
+  # The same availability zone as our instances
+  # availability_zones = ["${aws_instance.devopsae.*.availability_zone}"]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+ 
+  # Assign the Subnet ID's forr the AMI Create
+    subnets = ["${module.vpc_subnets.public_subnets_id}"]
+  
+  # Assign Security Group 
+    security_groups = ["${aws_security_group.elb.id}"]
+  
+  # The instances are registered automatically
+  instances = ["${aws_instance.devopsae.*.id}"]
+}
+
 
 # Starting Infrastructure As a Code 
 resource "aws_instance" "devopsae" {
