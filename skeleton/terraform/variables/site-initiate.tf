@@ -20,13 +20,15 @@ resource "aws_instance" "devopsae" {
 
      connection {
    # The default username for our AMI
-     user = "ec2-user"
+     user = "ubuntu"
+     private_key = "${file("/home/devopstest/.ssh/id_rsa")}"
    # The connection will use the local SSH agent for authentication.
+   # For Relative Path : private_key = "${file("${path.module}/keys/id_rsa")}"
                 }
 
  
   # Assign the VPC Security Group 
-    vpc_security_group_ids = ["${module.ssh_sg.ssh_sg_id}"]
+    vpc_security_group_ids = ["${module.ssh_sg.ssh_sg_id}","${module.nginx_sg.nginx_sg_id}"]
 
   # Assign the Subnet ID's forr the AMI Create
     subnet_id = "${module.vpc_subnets.public_subnets_id}"

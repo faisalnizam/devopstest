@@ -6,7 +6,6 @@ resource "aws_security_group" "ssh_sg" {
       Name = "${var.name}-${var.environment}-ssh"
       environment =  "${var.environment}"
     }
-    // allows traffic from the SG itself
     ingress {
         from_port = 0
         to_port = 0
@@ -14,7 +13,6 @@ resource "aws_security_group" "ssh_sg" {
         self = true
     }
 
-    // allow traffic for TCP 22
     ingress {
         from_port = 22
         to_port = 22

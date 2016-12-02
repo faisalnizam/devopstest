@@ -18,3 +18,9 @@ module "ssh_sg" {
         source_cidr_block = "0.0.0.0/0"
 }
 
+module "nginx_sg" { 
+	source = "./modules/nginx_sg" 
+	name = "${var.app_name}-nginx-sg" 
+	vpc_id = "${module.vpc_subnets.vpc_id}"
+	source_cidr_block = "0.0.0.0/0" 
+} 

@@ -1,4 +1,3 @@
-// Create the VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = "${var.vpc_cidr}"
   enable_dns_support   = "${var.enable_dns_support}"
@@ -15,7 +14,7 @@ output "vpc_id" {
   value = "${aws_vpc.vpc.id}"
 }
 
-// Create the IGW
+# Create the IGW
 resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.vpc.id}"
   tags { 
@@ -24,7 +23,7 @@ resource "aws_internet_gateway" "igw" {
   
 }
 
-// Create Public Subnets
+# Create Public Subnets
 resource "aws_subnet" "public" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   count                   = "${length(split(",", var.public_subnets_cidr))}"
@@ -60,7 +59,7 @@ resource "aws_route_table_association" "public" {
   route_table_id = "${aws_route_table.public.id}"
 }
 
-// Create the Private Subnets
+# Create the Private Subnets
 resource "aws_subnet" "private" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   count                   = "${length(split(",", var.private_subnets_cidr))}"

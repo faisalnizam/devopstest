@@ -1,10 +1,11 @@
 variable "name" {
-	default = "test"
+	default = "nginx_sg"
 }
 
 variable "environment" {
   default = "test"
 }
+
 
 variable "vpc_id" {
   description = "The VPC this security group will go in"
