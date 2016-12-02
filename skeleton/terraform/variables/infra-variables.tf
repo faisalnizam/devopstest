@@ -30,5 +30,25 @@ variable hosted_zone_id {
 
 variable total_number_of_machines  {  
    description = "Total Number of Machines Required" 
-   default = "2" 
+   default = "1" 
 } 
+
+variable app_name { 
+   description = "Define Name Of Project" 
+   default = "wordpress" 
+} 
+
+variable environment_name { 
+   description = "Environment Name" 
+   default     = "test" 
+} 
+
+variable "public_key_path" {
+  description = "Public Key For AMI's to access them seamlessly using the Private Key Later" 
+  default = "/home/devopstest/.ssh/id_rsa.pub" 
+}
+
+variable "key_name" {
+  description = "Desired name of AWS key pair"
+  default = "devopskyes" 
+}

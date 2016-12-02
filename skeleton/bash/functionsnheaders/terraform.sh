@@ -12,7 +12,7 @@ PWD=`pwd`
 cd $PWD/skeleton/terraform/variables/
 
 #Run TerraForm Command With Arguments Suppled 
-terraform plan -var 'total_number_of_machines='$3
+terraform plan -var 'total_number_of_machines='$3 'public_key_path='$PWD/.ssh/id_rsa.pub
 
 cd - 
 } 
