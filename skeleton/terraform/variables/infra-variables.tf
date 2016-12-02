@@ -23,10 +23,11 @@ variable domain_name {
    default = "devops.ae" 
 }
 
+/*
 variable hosted_zone_id {
    description = "Zone ID" 
    default = "Z132HODITPRQ5P" 
-}
+} */ 
 
 variable total_number_of_machines  {  
    description = "Total Number of Machines Required" 

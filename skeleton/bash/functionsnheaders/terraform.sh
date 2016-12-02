@@ -12,7 +12,12 @@ PWD=`pwd`
 cd $PWD/skeleton/terraform/variables/
 
 #Run TerraForm Command With Arguments Suppled 
-terraform plan -var 'total_number_of_machines='$3 'public_key_path='$PWD/.ssh/id_rsa.pub
+terraform plan -detailed-exitcode  -var 'app_name='$1 -var 'environment_name='$2 -var 'total_number_of_machines='$3 -var 'public_key_path=/home/devopstest/.ssh/id_rsa.pub'
+
+
+#Create Infrastructure 
+terraform apply -var 'app_name='$1 -var 'environment_name='$2 -var 'total_number_of_machines='$3 -var 'public_key_path=/home/devopstest/.ssh/id_rsa.pub'
+
 
 cd - 
 } 
