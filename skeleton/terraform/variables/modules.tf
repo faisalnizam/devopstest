@@ -24,3 +24,25 @@ module "nginx_sg" {
 	vpc_id = "${module.vpc_subnets.vpc_id}"
 	source_cidr_block = "0.0.0.0/0" 
 } 
+
+module "rds_sg" {
+    source = "./modules/rds_sg"
+    name = "${var.app_name}-rds-sg"
+    environment = "${var.environment_name}"
+    vpc_id = "${module.vpc_subnets.vpc_id}"
+    security_group_id = "${module.nginx_sg.nginx_sg_id}"
+}
+
+module "rds" {
+        source = "./modules/rds"
+        name = "${var.app_name}-rds-db"
+        environment = "${var.environment_name}"
+        storage = "5"
+        engine_version = "5.6.27"
+        db_name = "wordpress"
+        username = "root"
+        # Can define password in vartf file as well. Making it static for the moment
+        password = "ALD41Akip"
+        security_group_id = "${module.rds_sg.rds_sg_id}"
+        subnet_ids = "${module.vpc_subnets.vpc_id}"
+} 
