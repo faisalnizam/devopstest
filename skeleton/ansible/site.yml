@@ -1,7 +1,16 @@
-- hosts: aws_tag_server_role=devopsae
-  become: yes
-  remote_user: ubuntu
-#  roles:
-#   - bootstrap
-#   - wordpress
-#   - docker
+---
+- name: Install 
+  hosts: all
+   remote_user: user
+      become: yes
+      become_method: sudo
+
+  vars: 
+    db_name: "wordpress" 
+    db_user: "root"
+    db_password: "ALD41Akip" 
+    db_hostname: "" 
+    server_hostname: "blog.website"
+ roles:
+        - docker 
+        - wordpress

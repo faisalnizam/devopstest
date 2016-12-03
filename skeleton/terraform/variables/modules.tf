@@ -6,7 +6,7 @@ module "vpc_subnets" {
         enable_dns_hostnames = true
         vpc_cidr = "172.16.0.0/16"
         public_subnets_cidr = "172.16.10.0/24"
-        private_subnets_cidr = "172.16.20.0/24"
+        private_subnets_cidr = "172.16.30.0/24,172.16.40.0/24"
         azs    = "eu-west-1a,eu-west-1b"
 }
 
@@ -33,6 +33,7 @@ module "rds_sg" {
     security_group_id = "${module.nginx_sg.nginx_sg_id}"
 }
 
+ 
 module "rds" {
         source = "./modules/rds"
         name = "${var.app_name}-rds-db"
@@ -44,5 +45,6 @@ module "rds" {
         # Can define password in vartf file as well. Making it static for the moment
         password = "ALD41Akip"
         security_group_id = "${module.rds_sg.rds_sg_id}"
-        subnet_ids = "${module.vpc_subnets.vpc_id}"
+        subnet_ids = "${module.vpc_subnets.private_subnets_id}"
 } 
+

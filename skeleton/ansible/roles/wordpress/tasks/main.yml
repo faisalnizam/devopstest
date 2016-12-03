@@ -1,0 +1,4 @@
+---
+ - name: Start Docker With The Variables  
+      command:  docker run --name devopsae-wordpress -e WORDPRESS_DB_HOST={{ db_hostname }}:3306 -e WORDPRESS_DB_USER={{ db_user }} -e WORDPRESS_DB_PASSWORD={{ db_password }} -e WORDPRESS_DB_NAME={{ db_name }}
+

@@ -13,3 +13,8 @@ output "address" {
 output "ip" {
   value = "${join(",", aws_instance.devopsae.*.public_ip)}"
 } 
+
+output "rds_address" {
+  value = "${module.rds.rds_address}"
+}
+

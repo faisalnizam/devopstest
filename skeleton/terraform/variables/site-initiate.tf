@@ -76,5 +76,4 @@ resource "aws_instance" "devopsae" {
 
 }
 
-
 }
