@@ -1,0 +1,11 @@
+imap_host = "{{ imap_host }}"
+imap_port = {{ imap_port }}
+{% if imap_secure %}
+imap_secure = {{ imap_secure }}
+{% endif %}
+smtp_host = "{{ smtp_host }}"
+smtp_port = {{ smtp_port }}
+{% if smtp_secure %}
+smtp_secure = {{ smtp_secure }}
+{% endif %}
+smtp_auth = {{ smtp_auth_off | default('On') }}

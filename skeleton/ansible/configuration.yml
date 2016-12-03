@@ -1,0 +1,8 @@
+---
+ec2_access_key: "AKIAJVAKPEJ7NSQLX6FQ"
+ec2_secret_key: "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"
+blog_name: "devops.ae"
+db_name: "wordpress"
+db_userid: "root"
+db_password: "ALD41Akip"
+

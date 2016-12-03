@@ -1,0 +1,35 @@
+---
+- name: Create build directory
+  file: path=/opt/build_dir/{{ item }} state=directory
+  with_items:
+  - domains
+  - conf
+
+- name: Move configs to build directory
+  copy: src=roles/mail-client/files/{{ item }} dest=/opt/build_dir/conf
+  with_items:
+  - app.conf
+  - www.conf
+
+- name: Move Dockerfile to build directory
+  copy: src=roles/mail-client/files/Dockerfile dest=/opt/build_dir/
+
+- template: src=roles/mail-client/templates/application.ini.j2 dest=/opt/build_dir/conf/application.ini
+- template: src=roles/mail-client/templates/server.ini.j2 dest=/opt/build_dir/domains/{{ domain_name }}.ini
+
+- name: Building Docker image. It can take some time, up to several minutes
+  docker_image:
+    path: /opt/build_dir
+    name: reit_rainloop
+
+- name: Run container with mail-client
+  docker:
+    name: reitrainloop
+    image: reit_rainloop
+    state: started
+    detach: yes
+    ports:
+    - "80:80"
+
+- name: Removing build directory
+  file: path=/opt/build_dir state=absent

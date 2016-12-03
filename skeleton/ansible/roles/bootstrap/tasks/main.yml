@@ -1,0 +1,3 @@
+---
+- name: Install packages for ansible support
+  raw: dnf -y -e0 -d0 install python python-dnf

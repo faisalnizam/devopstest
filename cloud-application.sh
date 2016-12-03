@@ -38,13 +38,39 @@ then
   if check_pre_req terraform; then 
 	echo "" 
 	echo "Terra Form Installed" 
+        echo "Proceeding to Creating The AWS Infra using TerraForm" 
+
+        # Go To Terraform Function Initiation of AWS Infrastructure
+         initiate_infra_using_terraform $1 $2 $3 
+
+
   else 
 	 echo "Install Terra Form" 
 	 exit 1 
   fi # If Check Ends For Command Terraform 
 
 
-  # Go To Terraform Function Initiation of AWS Infrastructure
-  initiate_infra_using_terraform $1 $2 $3 
+  #Lets Move OnTo Ansible Now. 
+  #Since We are working in HA I will create a shared DB on RDS for Wordpress Cluster 
+  #Can be done with Terraform by creating a module/resource called rds. Next version will have the capability to choose from 
+
+    if check_pre_req ansible; then
+        echo "" 
+        echo "Ansible Installed" 
+        echo "Proceeding to Configure  Infra using Ansible" 
+
+        # Go To Terraform Function Initiation of AWS Infrastructure
+        #define_blog_definition  
+
+  else 
+       
+      	 echo "-------------------"
+         echo "Install Ansible" 
+         echo "" 
+         echo "Please remember to run terraform destroy to remove the infrastucture from AWS Account"
+         echo "Version 2 will have auto removal added to it"	 
+         exit 1 
+  fi # If Check Ends For Command Terraform 
+
 
 fi 

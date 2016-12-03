@@ -1,0 +1,7 @@
+- hosts: aws_tag_server_role=devopsae
+  become: yes
+  remote_user: ubuntu
+#  roles:
+#   - bootstrap
+#   - wordpress
+#   - docker
